@@ -1,0 +1,24 @@
+{
+  "name": "wepool",
+  "version": "1.0.0",
+  "description": "Car Pool Application that helps people travel together and save time, money and make friends",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev-server": "nodemon --experimental-specifier-resolution=node index.js"
+  },
+  "author": "Sanyam Bhaskar (034)",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "chalk": "^5.2.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.3"
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.1",
+    "nodemon": "^2.0.22"
+  }
+}
