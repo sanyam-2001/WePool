@@ -12,7 +12,7 @@ class AuthService {
 
     login = async () => {
         try {
-            const userRepoResponse = await this.userRepo.getOne({ email: this.userPayload.email });
+            const userRepoResponse = await this.userRepo.getDocument({ email: this.userPayload.email });
             if (!userRepoResponse.success) {
                 throw userRepoResponse.err;
             }

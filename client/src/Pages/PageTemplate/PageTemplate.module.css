@@ -1,0 +1,16 @@
+.appContainer {
+  position: absolute;
+  width: 95%;
+  height: 90%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background-attachment: fixed;
+}
+
+.innerContainer {
+  width: 80%;
+  margin: auto;
+  height: 100%;
+}

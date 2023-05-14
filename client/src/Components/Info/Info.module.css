@@ -1,0 +1,70 @@
+.heroContainer {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  padding-top: 4em;
+}
+.text {
+  padding-top: 4em;
+}
+.title {
+  position: relative;
+  font-family: "Cardo", serif;
+  font-size: 120px;
+  z-index: 10;
+}
+
+.subtitle {
+  font-family: "Ysabeau", sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+}
+.image {
+  position: absolute;
+  height: calc(100% - 4em);
+  width: 50%;
+  right: 0;
+  bottom: 0;
+}
+.image img {
+  height: 100%;
+  width: 100%;
+}
+.walkthrough {
+  position: relative;
+  height: 80%;
+  width: 95%;
+  margin: auto;
+  background-image: url("https://static.showit.co/2400/NX8yrKEKS9O_VNn9fZ-_SQ/10606/17_2.jpg");
+  background-size: cover;
+  margin-top: 4em;
+  background-attachment: fixed;
+}
+.about {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  height: 70%;
+  width: 60%;
+}
+.textArea {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  height: 70%;
+  width: 80%;
+  text-align: center;
+}
+.main {
+  font-size: 24px;
+  padding-bottom: 1em;
+}
+.desc {
+  font-weight: 300;
+  line-height: 2;
+}

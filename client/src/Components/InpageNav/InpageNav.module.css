@@ -1,0 +1,26 @@
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+  height: 10%;
+  margin: auto;
+}
+
+.navItem {
+  padding-top: 2em;
+  font-weight: 800;
+  font-family: "Ysabeau", sans-serif;
+  position: relative;
+  cursor: pointer;
+}
+
+.activeAnchor {
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 20px;
+  height: 20px;
+  background-color: white;
+}

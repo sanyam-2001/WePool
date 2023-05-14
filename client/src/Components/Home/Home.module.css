@@ -1,0 +1,7 @@
+.homeContainer {
+  position: relative;
+  width: 85%;
+  height: 90%;
+  margin: auto;
+  z-index: 1;
+}

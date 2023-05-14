@@ -6,9 +6,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import registerRoutes from './Bootstrap/RegisterRoutes';
 import connectToDB from './Bootstrap/RegisterDatabase';
-import UserModel from './Models/UserModel';
 import registerGlobalMiddlewares from './Bootstrap/RegisterGlobalMiddlewares';
-
+//Jasmine Star
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || AppConfig.DEFAULT_PORT;
@@ -16,7 +15,6 @@ const PORT = process.env.PORT || AppConfig.DEFAULT_PORT;
 registerGlobalMiddlewares(app);
 registerRoutes(app);
 connectToDB();
-
 
 if (process.env.ENV === EnvironmentTypes.PROD) {
     app.use(express.static(path.join(path.dirname(fileURLToPath(import.meta.url)), "client", "build")));
