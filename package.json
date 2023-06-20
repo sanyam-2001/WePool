@@ -6,7 +6,11 @@
   "type": "module",
   "scripts": {
     "dev-server": "nodemon --experimental-specifier-resolution=node index.js",
-    "dev": "concurrently -n server,client -c blue,yellow \"npm run dev-server\" \"cd client && npm start\""
+    "dev": "concurrently -n server,client -c blue,yellow \"npm run dev-server\" \"cd client && npm start\"",
+    "install-client": "cd client && npm install",
+    "build-client": "cd client && npm run build",
+    "start": "node index",
+    "heroku-postbuild": "npm run install-client && npm run build-client"
   },
   "author": "Sanyam Bhaskar (034)",
   "license": "ISC",
