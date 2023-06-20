@@ -10,15 +10,17 @@ class UserRepo {
             return new RepoResponse(true, null, savedUser);
         }
         catch (err) {
+            console.log(err);
             return new RepoResponse(false, err, null);
         }
     }
-    getOne = async (condition) => {
+    getDocument = async (condition) => {
         try {
             const resultSet = await UserModel.findOne(condition);
             return new RepoResponse(true, null, resultSet);
         }
         catch (err) {
+            console.log(err)
             return new RepoResponse(false, err, null);
         }
     }

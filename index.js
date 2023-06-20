@@ -1,3 +1,4 @@
+import http from 'http';
 import dotenv from 'dotenv'
 import express from 'express';
 import AppConfig from './AppConfig';
@@ -6,17 +7,37 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import registerRoutes from './Bootstrap/RegisterRoutes';
 import connectToDB from './Bootstrap/RegisterDatabase';
-import UserModel from './Models/UserModel';
 import registerGlobalMiddlewares from './Bootstrap/RegisterGlobalMiddlewares';
+import { Server } from "socket.io";
+
+//Jasmine Star
 
 dotenv.config();
 const app = express();
+const server = http.createServer(app);
+export const io = new Server(server, {
+    cors: {
+        origin: "http://localhost:3000"
+    }
+});
 const PORT = process.env.PORT || AppConfig.DEFAULT_PORT;
 
+io.on('connection', (socket) => {
+    socket.on('userJoined', ({ userId }) => {
+        console.log(`Connect: SocketId: ${socket.id}, userId: ${userId}`);
+        socket.join(userId);
+        socket.on('JOIN_TRIP_ROOM', (tripID) => {
+            console.log(tripID)
+            //socket.join(tripID);
+        })
+        socket.on('disconnect', () => {
+            console.log(`Disconnect: SocketId: ${socket.id}, userId: ${userId}`)
+        })
+    })
+});
 registerGlobalMiddlewares(app);
 registerRoutes(app);
 connectToDB();
-
 
 if (process.env.ENV === EnvironmentTypes.PROD) {
     app.use(express.static(path.join(path.dirname(fileURLToPath(import.meta.url)), "client", "build")));
@@ -26,6 +47,6 @@ if (process.env.ENV === EnvironmentTypes.PROD) {
 }
 
 
-app.listen(PORT, () => console.log(`PORT: ${PORT}`));
+server.listen(PORT, () => console.log(`PORT: ${PORT}`));
 
 

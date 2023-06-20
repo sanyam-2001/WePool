@@ -1,0 +1,22 @@
+.infoPanel {
+  width: 95%;
+  height: 95vh;
+  margin: auto;
+}
+.workable {
+  display: flex;
+  width: 75%;
+  margin: auto;
+  height: calc(100% - 8em);
+  justify-content: space-between;
+  padding-top: 8em;
+}
+
+.pastTripContainer {
+  flex: 1;
+  margin: 1em;
+}
+.newTripContainer {
+  flex: 1;
+  margin: 1em;
+}

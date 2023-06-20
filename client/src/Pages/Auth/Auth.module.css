@@ -1,0 +1,70 @@
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    45deg,
+    rgba(66, 183, 245, 0.8) 0%,
+    rgba(66, 245, 189, 0.4) 100%
+  );
+}
+
+.workable {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  width: 500px;
+  height: 60vh;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 3rem;
+  overflow: hidden;
+}
+.closeable {
+  position: absolute;
+  z-index: 20;
+  top: 3rem;
+  right: 10%;
+  color: #4285f4;
+  background-color: white;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  font-size: 40px;
+  cursor: pointer;
+  transform: scale(0);
+}
+.LOGIN_SCREEN {
+  width: 90%;
+}
+.SIGNUP_SCREEN_CONTAINER {
+  position: absolute;
+  top: 0;
+  left: 95%;
+  width: calc(95%);
+  background-color: #4285f4;
+}
+.SIGNUP_SCREEN {
+  padding: 3rem;
+}
+.headingLogin {
+  color: #4285f4;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+.headingSignup {
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+.inputBox {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
