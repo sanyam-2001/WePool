@@ -1,3 +1,4 @@
+import { GET } from "./GET";
 import { POST } from "./POST";
 export const getCurrentLocation = async () => {
     return new Promise((resolve, reject) => {
@@ -12,4 +13,18 @@ export const getAutocompleteSuggestions = async (prompt) => {
         prompt
     });
     return response;
+}
+
+export const updateGlobalCurrentLocation = async (setCurrentLocation) => {
+
+    const { coords: { longitude, latitude } } = await getCurrentLocation();
+    const requestString = `/api/geo/reverseGeocode?longitude=${longitude}&latitude=${latitude}`;
+    const { data } = await GET(requestString);
+    const locationObject = {
+        latitude,
+        longitude,
+        countryCode: data?.[0]?.country_code
+    }
+    setCurrentLocation(locationObject);
+
 }

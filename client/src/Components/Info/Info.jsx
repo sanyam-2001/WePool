@@ -1,16 +1,17 @@
 import React from 'react';
 import styles from './Info.module.css';
-const Info = () => {
-    const image = "https://media.istockphoto.com/id/1225371296/photo/empty-road-through-the-volcanic-field.jpg?b=1&s=612x612&w=0&k=20&c=2wxtONLDcu4DXzrHiQYJbXw318euBEntRjmkctmGMCA=";
+import InpageNav from '../InpageNav/InpageNav';
+const Info = (props) => {
     return (
-        <>
-            <div className={styles.heroContainer}>
-                <div className={styles.text}>
-                    <div className={styles.title}>WE  POOL</div>
-                    <div className={styles.subtitle}>Depart with strangers, <br /> Arrive with friends</div>
-                </div>
-                <div className={styles.image}>
-                    <img src={image} alt="HERO" />
+        <div className={styles.infoContainer}>
+            <div className={styles.heroPanel} style={{ backgroundColor: props.initialColor }}>
+                <InpageNav />
+                <div className={styles.heroContainer}>
+                    <div className={styles.text}>
+                        <div className={styles.title}>WE  POOL</div>
+                        <div className={styles.subtitle}>Depart with strangers, <br /> Arrive with friends</div>
+                    </div>
+                    <div className={styles.image}></div>
                 </div>
             </div>
             <div className={styles.walkthrough}>
@@ -25,7 +26,8 @@ const Info = () => {
                     </div>
                 </div>
             </div>
-        </>
+
+        </div>
     );
 }
 
