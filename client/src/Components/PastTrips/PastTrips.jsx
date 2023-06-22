@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from "./PastTrips.module.css";
+import GetAuth from '../../Utils/GetAuth';
+
 const PastTrips = () => {
+    const [count, setCount] = useState(0);
+    useEffect(() => {
+        GetAuth('/api/ride/pastTrips')
+            .then(response => {
+                setCount(response?.data?.length || 0)
+            })
+    }, []);
     return (
         <div>
             <div className={styles.text}>
@@ -8,7 +17,7 @@ const PastTrips = () => {
             </div>
             <div className={styles.pastContainer}>
                 <div className={styles.empty}>
-                    No Past Trips
+                    {count} Past Trips
                 </div>
             </div>
         </div>

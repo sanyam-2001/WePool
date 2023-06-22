@@ -9,6 +9,8 @@ import registerRoutes from './Bootstrap/RegisterRoutes';
 import connectToDB from './Bootstrap/RegisterDatabase';
 import registerGlobalMiddlewares from './Bootstrap/RegisterGlobalMiddlewares';
 import { Server } from "socket.io";
+import textMessageForActiveTripDto from './dto/TextMessageForActiveTripDto';
+
 
 //Jasmine Star
 
@@ -27,8 +29,10 @@ io.on('connection', (socket) => {
         console.log(`Connect: SocketId: ${socket.id}, userId: ${userId}`);
         socket.join(userId);
         socket.on('JOIN_TRIP_ROOM', (tripID) => {
-            console.log(tripID)
-            //socket.join(tripID);
+            socket.join(tripID);
+            socket.on('USER_SENDS_TEXT', (body) => {
+                io.in(tripID).emit("USER_GETS_TEXT", textMessageForActiveTripDto(body));
+            })
         })
         socket.on('disconnect', () => {
             console.log(`Disconnect: SocketId: ${socket.id}, userId: ${userId}`)

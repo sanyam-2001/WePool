@@ -4,6 +4,7 @@ export const PostAuth = async (url, body) => {
         const JWT_TOKEN = localStorage.getItem("JWTTOKEN");
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("Authorization", `BEARER ${JWT_TOKEN}`);
+        console.log(body)
         const raw = JSON.stringify(body);
 
         const requestOptions = {

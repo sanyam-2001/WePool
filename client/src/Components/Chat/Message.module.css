@@ -1,0 +1,29 @@
+.myMessage,
+.notMyMessage {
+  display: flex;
+  padding: 10px;
+}
+.myMessage {
+  justify-content: flex-end;
+}
+.bubble {
+  max-width: 80%;
+  min-width: 40%;
+  padding: 10px;
+  border-radius: 10px 10px 0 10px;
+}
+.myMessage .bubble {
+  background-color: rgb(48, 102, 175);
+  color: white;
+}
+.notMyMessage .bubble {
+  background-color: rgb(233, 245, 254);
+}
+
+.time {
+  text-align: right;
+  font-size: 10px;
+}
+.name {
+  font-size: 14px;
+}

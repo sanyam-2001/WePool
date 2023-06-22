@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './NewTrip.module.css';
 import Autocomplete from '../Common/Autocomplete/Autocomplete';
 import Button from '../Common/Button/Button';
 import { toast } from 'react-toastify';
 import ConfirmationScreen from '../ConfirmationScreen/ConfirmationScreen';
 import ActiveTripScreen from '../ActiveTripScreen/ActiveTripScreen';
+import WaitScreen from '../WaitScreen/WaitScreen';
+import { AppContext } from '../../Contexts';
 
 const NewTrip = () => {
+    const { activeTripScreenVisible, setActiveTripScreenVisible } = useContext(AppContext);
     const [currentLocation, setCurrentLocation] = useState(["", null]);
     const [destination, setDestination] = useState(["", null]);
     const [confirmationScreenVisible, setConfirmationScreenVisible] = useState(false);
-    const [activeTripScreenVisible, setActiveTripScreenVisible] = useState(false);
+    const [waitScreenVisible, setWaitScreenVisible] = useState(false);
 
     const handleCurrentLocationChange = (e) => {
         setCurrentLocation([e?.properties?.name, e?.properties])
@@ -29,8 +32,9 @@ const NewTrip = () => {
 
     return (
         <div>
-            {confirmationScreenVisible ? <ConfirmationScreen startPoint={currentLocation} endPoint={destination} setActiveTripScreenVisible={setActiveTripScreenVisible} setConfirmationScreenVisible={setConfirmationScreenVisible} /> : null}
-            {activeTripScreenVisible ? <ActiveTripScreen /> : null}
+            {confirmationScreenVisible ? <ConfirmationScreen startPoint={currentLocation} endPoint={destination} setActiveTripScreenVisible={setActiveTripScreenVisible} setConfirmationScreenVisible={setConfirmationScreenVisible} setWaitScreenVisible={setWaitScreenVisible} /> : null}
+            {activeTripScreenVisible ? <ActiveTripScreen setActiveTripScreenVisible={setActiveTripScreenVisible} /> : null}
+            {waitScreenVisible ? <WaitScreen /> : null}
             <div className={styles.title}>
                 Find New Trip
             </div>

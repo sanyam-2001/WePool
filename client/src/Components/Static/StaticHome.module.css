@@ -5,6 +5,7 @@
   width: 4.5em;
   height: calc(90% + 5px);
   z-index: 998;
+  display: none;
 }
 .titleContainer {
   position: fixed;

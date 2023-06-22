@@ -10,6 +10,9 @@ const PageTemplate = ({ children, initialColor }) => {
     const globalContext = useContext(GlobalContext);
     const navigate = useNavigate();
     const setGlobalContextUser = globalContext.setUser;
+    const setGlobalContextActiveTrip = globalContext.setActiveTrip;
+    const [isNavOpen, setNavOpen] = useState(false);
+    const [activeTripScreenVisible, setActiveTripScreenVisible] = useState(false);
 
     useEffect(() => {
 
@@ -18,13 +21,22 @@ const PageTemplate = ({ children, initialColor }) => {
         }
         GetAuth('/api/user')
             .then(response => {
+                console.log(response.data)
                 setGlobalContextUser(response.data);
                 socket.emit('userJoined', { userId: response.data._id });
             });
     }, [navigate, setGlobalContextUser]);
-    const [isNavOpen, setNavOpen] = useState(false);
+    useEffect(() => {
+        GetAuth('/api/ride/activeTrips')
+            .then(response => {
+                if (response.data.isActive) {
+                    setGlobalContextActiveTrip(response.data.activeTrip);
+                    setActiveTripScreenVisible(true)
+                }
+            })
+    }, [setGlobalContextActiveTrip]);
     return (
-        <AppContext.Provider value={{ isNavOpen, setNavOpen }}>
+        <AppContext.Provider value={{ isNavOpen, setNavOpen, activeTripScreenVisible, setActiveTripScreenVisible }}>
             <Static />
             {/* Scroll Strip for Parallax Effect */}
             <div style={{ position: 'fixed', width: '100%', height: '5%', backgroundColor: 'white', zIndex: 997 }}></div>
