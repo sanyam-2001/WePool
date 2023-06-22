@@ -6,4 +6,4 @@ export const AppContext = React.createContext();
 
 export const HomeScreenContext = React.createContext();
 
-export const NavItemList = ["Info", "Friends", "Trips", "Drivers(Coming Soon)"];
+export const NavItemList = ["Info","Trips"];
