@@ -60,7 +60,10 @@ class RideService {
             return new Response().success(createdTrip.data);
 
         }
-        else await this.insertOne(requestBodyBuilt);
+        else {
+            await this.insertOne(requestBodyBuilt);
+            io.in(requestBodyBuilt.userId).emit("TRIP_NOT_FOUND");
+        }
 
 
 
@@ -76,6 +79,37 @@ class RideService {
             console.log("Get By Proximity Error: ", err);
             return [];
         }
+    }
+
+    endTrip = async (user, activeTrip) => {
+        console.log(user)
+        const { _id } = activeTrip;
+        const latestTripVersion = await this.tripRepo.getDocument({ _id });
+        const { participants, status } = latestTripVersion.data;
+        const myIndex = participants.indexOf(user.id);
+        let newStatus = "";
+        for (let i = 0; i < status.length; i++) {
+            if (i == myIndex) {
+                newStatus += "0";
+            }
+            else newStatus += status[i]
+        }
+        const updatedPayload = await this.tripRepo.updateDocumentById(_id, { status: newStatus });
+        io.in(_id).emit("USER_ENDED_TRIP")
+        return updatedPayload.data;
+    }
+
+    getActiveTripIfAny = async (userId) => {
+        const myTrips = await this.tripRepo.getDocument({ participants: { $in: userId } });
+        const isTripActiveForMe = myTrips?.data?.status[myTrips?.data?.participants?.indexOf(userId)] == "1";
+        return new Response().success({
+            activeTrip: myTrips?.data,
+            isActive: isTripActiveForMe
+        });
+    }
+    getPastTrips = async (id) => {
+        const response = await this.tripRepo.getDocuments({ participants: { $in: id }, status: "00" });
+        return new Response().success(response.data);
     }
 
 }

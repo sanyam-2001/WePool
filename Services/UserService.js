@@ -9,6 +9,7 @@ class UserService {
     getOne = async (condition) => {
         try {
             const userRepoResponse = await this.userRepo.getDocument(condition);
+
             if (!userRepoResponse.success) {
                 throw userRepoResponse.err;
             }

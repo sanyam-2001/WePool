@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '@geoapify/geocoder-autocomplete/styles/minimal.css'
 import '@geoapify/route-directions/styles/styles.css';
+import 'leaflet/dist/leaflet.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
