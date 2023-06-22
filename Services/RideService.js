@@ -57,12 +57,13 @@ class RideService {
             const createdTrip = await this.insertTrip(createTripObjectFromRequests(requestBodyBuilt, foundRequest));
             io.in(requestBodyBuilt.userId).emit("TRIP_FOUND", createdTrip.data);
             io.in(foundRequest.requestBy._id.toString()).emit("TRIP_FOUND", createdTrip.data);
-            return new Response().success(createdTrip.data);
+            return new Response().success(true);
 
         }
         else {
             await this.insertOne(requestBodyBuilt);
             io.in(requestBodyBuilt.userId).emit("TRIP_NOT_FOUND");
+            return new Response().success(false)
         }
 
 
